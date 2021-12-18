@@ -17,5 +17,8 @@
           "@typescript-eslint/no-unused-vars": "off"
         }
       }
-    ]
+    ],
+    "globals": {
+      "JSX": true
+    }
   }
