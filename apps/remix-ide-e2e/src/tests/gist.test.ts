@@ -91,10 +91,18 @@ module.exports = {
       .scrollAndClick('*[data-id="landingPageImportFromGistButton"]')
       .waitForElementVisible('*[data-id="modalDialogCustomPromptText"]')
       .setValue('*[data-id="modalDialogCustomPromptText"]', testData.invalidGistId)
-      .modalFooterOKClick()
+      .execute(function () {
+        const modal = document.querySelector('#modal-footer-ok') as HTMLElement
+
+        modal.click()
+      })
       .waitForElementVisible('*[data-id="modalDialogModalBody"]')
       .assert.containsText('*[data-id="modalDialogModalBody"]', 'Not Found')
-      .modalFooterOKClick()
+      .execute(function () {
+        const modal = document.querySelector('#modal-footer-ok') as HTMLElement
+
+        modal.click()
+      })
   },
 
   'Display Error Message For Missing Gist Token When Publishing': function (browser: NightwatchBrowser) {
@@ -131,7 +139,11 @@ module.exports = {
       .scrollAndClick('*[data-id="landingPageImportFromGistButton"]')
       .waitForElementVisible('*[data-id="modalDialogCustomPromptText"]')
       .setValue('*[data-id="modalDialogCustomPromptText"]', testData.validGistId)
-      .modalFooterOKClick()
+      .execute(function () {
+        const modal = document.querySelector('#modal-footer-ok') as HTMLElement
+
+        modal.click()
+      })
       .openFile(`gist-${testData.validGistId}/README.txt`)
       .waitForElementVisible(`div[title='default_workspace/gist-${testData.validGistId}/README.txt']`)
       .assert.containsText(`div[title='default_workspace/gist-${testData.validGistId}/README.txt'] > span`, 'README.txt')
