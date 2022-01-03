@@ -3,9 +3,9 @@ import EventEmitter from 'events'
 
 class ModalFooterOKClick extends EventEmitter {
   command (this: NightwatchBrowser): NightwatchBrowser {
-    this.api.waitForElementVisible('[data-id="fileSystem-modal-footer-ok-react"]').perform((client, done) => {
+    this.api.waitForElementPresent('.modal-ok').perform((client, done) => {
       this.api.execute(function () {
-        const elem = document.querySelector('[data-id="fileSystem-modal-footer-ok-react"]') as HTMLElement
+        const elem = document.querySelector('.modal-ok') as HTMLElement
 
         elem.click()
       }, [], () => {
